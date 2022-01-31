@@ -36,20 +36,22 @@ class Tree {
         parent.children.push(new Node(value, parent));
         this.setXY(this.root, width / 2, 50, 1);
         this.miniMax();
+        this.resetLine(this.root)
+        this.setLine(this.root)
     }
 
     removeNode = (node) => {
         node.parent.children.splice(node.parent.children.indexOf(node), 1);
         this.setXY(this.root, width / 2, 50, 1);
+        this.miniMax();
+        this.resetLine(this.root)
+        this.setLine(this.root)
     }
 
     miniMax = () => {
         let v = this.max(this.root);
         this.eq = v;
         v.color = color(255, 0, 0);
-        this.resetLine(this.root)
-        this.setLine(this.root)
-        console.log(v);
     }
 
     resetLine = (node) => {
