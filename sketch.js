@@ -59,6 +59,6 @@ function mouseClicked() {
 
 function draw() {
   // put drawing code here
-  background(220);
+  background("#292929");
   tree.display();
 }

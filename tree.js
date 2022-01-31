@@ -1,3 +1,6 @@
+let red = "#d3427b";
+let normalLine = "grey";
+let purple = "#b688fc";
 class Tree {
     constructor() {
         this.root = new Node(0);
@@ -45,11 +48,11 @@ class Tree {
     miniMax = () => {
         let v = this.max(this.root);
         this.eq = v;
-        v.color = color(255, 0, 0);
+        v.color = red;
     }
 
     resetLine = (node) => {
-        node.lineColor = color(0, 0, 0);
+        node.lineColor = normalLine;
         for (let i = 0; i < node.children.length; i++) {
             this.resetLine(node.children[i]);
         }
@@ -61,10 +64,8 @@ class Tree {
             let n = this.setLine(node.children[i]);
             if (n) {
                 console.log(n);
-                node.children[i].lineColor = color(255, 0, 0);
+                node.children[i].lineColor = red;
                 return true;
-            } else {
-                node.children[i].lineColor = color(0, 0, 0);
             }
         }
         return false;
@@ -98,12 +99,12 @@ class Tree {
 
     disRecurse = (node) => {
         // if (node === this.eq) node.color = color(255, 0, 0);
-        node.display(node.x, node.y);
         for (let i = 0; i < node.children.length; i++) {
             stroke(node.children[i].lineColor);
             line(node.x, node.y, node.children[i].x, node.children[i].y);
             this.disRecurse(node.children[i]);
         }
+        node.display(node.x, node.y);
     }
 
     update = () => {
@@ -127,11 +128,12 @@ class Node {
         this.children = [];
         this.parent = parent;
         this.color = color(0, 0, 0);
-        this.lineColor = color(0, 0, 0);
+        this.lineColor = normalLine;
     }
 
     display = (x, y) => {
-        fill(255);
+        // fill(255);
+        fill(purple);
         noStroke();
         ellipse(x, y, this.r * 2, this.r * 2);
         // if (this.children.length == 0) {
