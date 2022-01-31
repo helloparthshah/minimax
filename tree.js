@@ -1,6 +1,6 @@
 class Tree {
     constructor() {
-        this.root = new Node(10);
+        this.root = new Node(0);
         this.setXY(this.root, width / 2, 50, 1);
 
         this.eq = null;
@@ -34,18 +34,12 @@ class Tree {
 
     addChild = (parent, value = 0) => {
         parent.children.push(new Node(value, parent));
-        this.setXY(this.root, width / 2, 50, 1);
-        this.miniMax();
-        this.resetLine(this.root)
-        this.setLine(this.root)
+        this.update();
     }
 
     removeNode = (node) => {
         node.parent.children.splice(node.parent.children.indexOf(node), 1);
-        this.setXY(this.root, width / 2, 50, 1);
-        this.miniMax();
-        this.resetLine(this.root)
-        this.setLine(this.root)
+        this.update();
     }
 
     miniMax = () => {
@@ -110,6 +104,13 @@ class Tree {
             line(node.x, node.y, node.children[i].x, node.children[i].y);
             this.disRecurse(node.children[i]);
         }
+    }
+
+    update = () => {
+        this.setXY(this.root, width / 2, 50, 1);
+        this.miniMax();
+        this.resetLine(this.root)
+        this.setLine(this.root)
     }
 
     display = () => {
